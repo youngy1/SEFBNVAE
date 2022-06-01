@@ -188,7 +188,7 @@ print(os.getcwd())
 x = tf.placeholder(np.float,shape=(8,40,40,40,1))
 
 mean,logvar = encode(x)
-#增加部分
+#正则化部分
 scaler=Scaler()
 mean = tf.layers.batch_normalization(mean, scale=False, center=False, epsilon=1e-8)
 z_mean = scaler(mean, mode='T')
