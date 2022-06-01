@@ -229,75 +229,75 @@ with tf.Session() as sess:
         for epoch in range(2000):
 
             _, c,b = sess.run([optimizer, cost,latent_loss], feed_dict={x: input})
-            y= tf.abs(tf.subtract(2*b/256,1))
-            beta = tf.reduce_mean(tf.sqrt(y))
-            #if epoch % 100== 0:
-            if epoch :
-                #print("Epoch:", '%04d' % (epoch + 1), "cost=", "{:.9f}".format(c))
-                print("Epoch:", '%04d' % (epoch + 1),sess.run(beta))
-                #saver.save(sess, "../save/testbeta_model/save_model.ckpt")
+            #y= tf.abs(tf.subtract(2*b/256,1))
+            #beta = tf.reduce_mean(tf.sqrt(y))
+            if epoch % 100== 0:
+            #if epoch :
+                print("Epoch:", '%04d' % (epoch + 1), "cost=", "{:.9f}".format(c))
+                #print("Epoch:", '%04d' % (epoch + 1),sess.run(beta))
+                saver.save(sess, "../save/testbeta_model/save_model.ckpt")
 
         print("ok!")
 
-    # f1 = open('../save/output/bn_att_1000.txt', 'w+',encoding='UTF-8')
-    # out = sess.run(z,feed_dict={x:input})
-    # cubeIndex = 0
-    # xIndex = 0
-    # yIndex = 0
-    # zIndex = 0
-    #
-    # for i in range(80*80*80):
-    #     z = math.floor(i / (80 * 80))
-    #     y = math.floor((i - z * 80 * 80) / 80)
-    #     x = i - y * 80 - z * 80 * 80
-    #     if x in range(0,40) and y in range(0,40) and z in range(0,40):
-    #         cubeIndex = 0
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0]>0 else 0)+'\n')
-    #         continue
-    #     if x in range(40,80) and y in range(0,40) and z in range(0,40):
-    #         cubeIndex = 1
-    #         x = x-40
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0]>0 else 0) + '\n')
-    #         continue
-    #     if x in range(0,40) and y in range(40,80) and z in range(0,40):
-    #         cubeIndex = 2
-    #         y = y-40
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
-    #
-    #     if x in range(40,80) and y in range(40,80) and z in range(0,40):
-    #         cubeIndex = 3
-    #         x = x-40
-    #         y = y-40
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
-    #         continue
-    #
-    #     if x in range(0,40) and y in range(0,40) and z in range(40,80):
-    #         cubeIndex = 4
-    #         z = z-40
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
-    #         continue
-    #
-    #     if x in range(40,80) and y in range(0,40) and z in range(40,80):
-    #         cubeIndex = 5
-    #         x = x-40
-    #         z = z-40
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
-    #         continue
-    #
-    #     if x in range(0,40) and y in range(40,80) and z in range(40,80):
-    #         cubeIndex = 6
-    #         z = z-40
-    #         y = y-40
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
-    #         continue
-    #
-    #     if x in range(40,80) and y in range(40,80) and z in range(40,80):
-    #         cubeIndex = 7
-    #         x = x-40
-    #         y = y-40
-    #         z = z-40
-    #         f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
-    #         continue
+    f1 = open('../save/output/bn_att_1000.txt', 'w+',encoding='UTF-8')
+    out = sess.run(z,feed_dict={x:input})
+    cubeIndex = 0
+    xIndex = 0
+    yIndex = 0
+    zIndex = 0
+    
+    for i in range(80*80*80):
+        z = math.floor(i / (80 * 80))
+        y = math.floor((i - z * 80 * 80) / 80)
+        x = i - y * 80 - z * 80 * 80
+        if x in range(0,40) and y in range(0,40) and z in range(0,40):
+            cubeIndex = 0
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0]>0 else 0)+'\n')
+            continue
+        if x in range(40,80) and y in range(0,40) and z in range(0,40):
+            cubeIndex = 1
+            x = x-40
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0]>0 else 0) + '\n')
+            continue
+        if x in range(0,40) and y in range(40,80) and z in range(0,40):
+            cubeIndex = 2
+            y = y-40
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
+    
+        if x in range(40,80) and y in range(40,80) and z in range(0,40):
+            cubeIndex = 3
+            x = x-40
+            y = y-40
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
+            continue
+    
+        if x in range(0,40) and y in range(0,40) and z in range(40,80):
+            cubeIndex = 4
+            z = z-40
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
+            continue
+    
+        if x in range(40,80) and y in range(0,40) and z in range(40,80):
+            cubeIndex = 5
+            x = x-40
+            z = z-40
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
+            continue
+    
+        if x in range(0,40) and y in range(40,80) and z in range(40,80):
+            cubeIndex = 6
+            z = z-40
+            y = y-40
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
+            continue
+    
+        if x in range(40,80) and y in range(40,80) and z in range(40,80):
+            cubeIndex = 7
+            x = x-40
+            y = y-40
+            z = z-40
+            f1.write(str(1 if out[cubeIndex, x, y, z, 0] > 0 else 0) + '\n')
+            continue
 
     print('执行完毕')
 
