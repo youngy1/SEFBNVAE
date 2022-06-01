@@ -16,7 +16,7 @@ Anqin Zhang Email: shiep2021@yeah.net, Affiliation: College of Computer Science 
 
 
 ## SE-FBN-VAE
-1.requirements
+1.Requirements
 
 Tensorflow-gpu == 1.15.1
 
@@ -33,4 +33,4 @@ First, prepare training image: Cut the porous media slice into 80 * 80 * 80 size
 
 Secondly, set the network parameters such as data path, learning rate and storage location. The path of executable .py file  is: code/bn_vae_att.py. After configuring the parameters and environment, you can run directly: python bn_vae_att.py
 
-Finally, in /save/savepoint, the trained model is stored here. Find the  .txt format of the porous media three-dimensional structure images in /save/output. Use pro/txtTOtiff to convert .txt to .tif format (if necessary) or use .txt directly for later analysis. visualization and processing.
+Finally, in /save/savepoint, the trained model is stored here. Find the  .txt format of the porous media three-dimensional structure images in /save/output. Use pro/txtTOtiff to convert .txt to .tif format (if necessary) or use .txt directly for later analysis, visualization and processing.
